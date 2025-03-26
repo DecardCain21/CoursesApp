@@ -1,6 +1,5 @@
 package com.example.coursesapp.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -9,18 +8,102 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    // Основной цвет приложения
+    // (Обычно используется для главных элементов интерфейса, таких как AppBar, кнопки и т. д.)
+    primary = BasicGreen,
+
+    // Вспомогательный цвет
+    // (Используется для менее важных элементов интерфейса, например, индикаторов)
+    secondary = LightGrey,
+
+    // Часто применяется для специальных акцентов, выделений или поддерживающих декоративных элементов
+    tertiary = White,
+
+    // Цвет фона приложения
+    background = Black,
+
+    // Применяется для фона отдельных компонентов, таких как карточки (Card),
+    // модальные окна и т. д.
+    // Отличается от background, поскольку представляет фоновую поверхность "над" основным фоном.
+    surface = Grey,
+
+    //
+    outline = OutlineLightGrey,
+
+    //
+    onSurfaceVariant = LightGrey,
+
+    // Цвет текста и иконок, которые отображаются поверх элемента с primary цветом
+    onPrimary = Color.Black,
+
+    //
+    surfaceContainerLow = Color.White,
+
+    // Цвет текста и иконок поверх secondary
+    onSecondary = Grey,
+
+    // Цвет текста и иконок поверх tertiary
+    onTertiary = Color.White,
+
+    // Цвет текста и иконок поверх background
+    // (Используется для текста, отображаемого на основном фоне приложения)
+    onBackground = Color.White,
+
+    // Цвет текста и иконок поверх surface
+    // (Применяется для текста на карточках, диалоговых окнах и других подобных поверхностях)
+    onSurface = Black,
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+    // Основной цвет приложения
+    // (Обычно используется для главных элементов интерфейса, таких как AppBar, кнопки и т. д.)
+    primary = BasicGreen,
+
+    // Вспомогательный цвет
+    // (Используется для менее важных элементов интерфейса, например, индикаторов)
+    secondary = LightGrey,
+
+    // Часто применяется для специальных акцентов, выделений или поддерживающих декоративных элементов
+    tertiary = White,
+
+    // Цвет фона приложения
+    background = Black,
+
+    // Применяется для фона отдельных компонентов, таких как карточки (Card),
+    // модальные окна и т. д.
+    // Отличается от background, поскольку представляет фоновую поверхность "над" основным фоном.
+    surface = Grey,
+
+    //
+    outline = OutlineLightGrey,
+
+    //
+    onSurfaceVariant = LightGrey,
+
+    // Цвет текста и иконок, которые отображаются поверх элемента с primary цветом
+    onPrimary = Color.Black,
+
+    //
+    surfaceContainerLow = Color.White,
+
+    // Цвет текста и иконок поверх secondary
+    onSecondary = Grey,
+
+    // Цвет текста и иконок поверх tertiary
+    onTertiary = Color.White,
+
+    // Цвет текста и иконок поверх background
+    // (Используется для текста, отображаемого на основном фоне приложения)
+    onBackground = Color.White,
+
+    // Цвет текста и иконок поверх surface
+    // (Применяется для текста на карточках, диалоговых окнах и других подобных поверхностях)
+    onSurface = Black,
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
@@ -40,7 +123,7 @@ fun CoursesAppTheme(
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
+    /*val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
@@ -48,7 +131,8 @@ fun CoursesAppTheme(
 
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
-    }
+    }*/
+    val colorScheme = LightColorScheme
 
     MaterialTheme(
         colorScheme = colorScheme,
