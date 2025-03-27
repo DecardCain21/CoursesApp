@@ -28,7 +28,7 @@ fun BasicGreenButton(
 ) {
 
     Button(
-        modifier = modifier.fillMaxWidth()/*.height(40.dp)*/,
+        modifier = modifier.fillMaxWidth(),
         onClick = onClick,
         enabled = isEnabled,
         colors = ButtonDefaults.buttonColors(

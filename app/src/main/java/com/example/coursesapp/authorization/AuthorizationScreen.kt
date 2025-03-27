@@ -62,7 +62,7 @@ fun AuthorizationScreen(
             Text(
                 modifier = Modifier.padding(top = 100.dp),
                 text = stringResource(R.string.enter),
-                fontSize = 28.sp,
+                fontSize = 36.sp,
                 color = MaterialTheme.colorScheme.tertiary
             )
             Text(

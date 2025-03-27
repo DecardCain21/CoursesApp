@@ -4,11 +4,6 @@ import androidx.compose.foundation.interaction.FocusInteraction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Error
-import androidx.compose.material.icons.filled.HighlightOff
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -84,26 +79,6 @@ fun CustomTextField(
             )
         }
     )
-}
-
-@Composable
-private fun LabelIcon(
-    isError: Boolean,
-    clearAll: () -> Unit,
-) {
-    if (isError) {
-        Icon(
-            imageVector = Icons.Default.Error,
-            contentDescription = "123",
-        )
-    } else {
-        IconButton(onClick = clearAll) {
-            Icon(
-                imageVector = Icons.Default.HighlightOff,
-                contentDescription = "123"
-            )
-        }
-    }
 }
 
 @Preview
