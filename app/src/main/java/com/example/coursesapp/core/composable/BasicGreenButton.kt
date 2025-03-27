@@ -28,7 +28,7 @@ fun BasicGreenButton(
 ) {
 
     Button(
-        modifier = modifier.fillMaxWidth()/*.height(40.dp)*/,
+        modifier = modifier.fillMaxWidth(),
         onClick = onClick,
         enabled = isEnabled,
         colors = ButtonDefaults.buttonColors(
@@ -36,7 +36,7 @@ fun BasicGreenButton(
             disabledContainerColor = MaterialTheme.colorScheme.primary,
             disabledContentColor = MaterialTheme.colorScheme.primary,
         ),
-        shape = RoundedCornerShape(12.dp),
+        shape = RoundedCornerShape(30.dp),
         contentPadding = PaddingValues(top = 18.dp, bottom = 18.dp),
         content = {
             Text(

@@ -1,16 +1,12 @@
 package com.example.coursesapp.ui.theme
 
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.White
-import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
     // Основной цвет приложения
@@ -52,7 +48,7 @@ private val DarkColorScheme = darkColorScheme(
 
     // Цвет текста и иконок поверх background
     // (Используется для текста, отображаемого на основном фоне приложения)
-    onBackground = Color.White,
+    onBackground = White,
 
     // Цвет текста и иконок поверх surface
     // (Применяется для текста на карточках, диалоговых окнах и других подобных поверхностях)
@@ -86,7 +82,7 @@ private val LightColorScheme = lightColorScheme(
     onSurfaceVariant = LightGrey,
 
     // Цвет текста и иконок, которые отображаются поверх элемента с primary цветом
-    onPrimary = Color.Black,
+    onPrimary = White,
 
     //
     surfaceContainerLow = Color.White,
@@ -95,7 +91,7 @@ private val LightColorScheme = lightColorScheme(
     onSecondary = Grey,
 
     // Цвет текста и иконок поверх tertiary
-    onTertiary = Color.White,
+    onTertiary = White,
 
     // Цвет текста и иконок поверх background
     // (Используется для текста, отображаемого на основном фоне приложения)

@@ -20,3 +20,16 @@ val OnSurfaceOpacity12 = Color(0x1FFFFFFF)
 
 //#12B956
 val BasicGreen = Color(0xFF12B956)
+
+//
+val BasicGrey = Color(0xFF32333A)
+
+val BasicGreyText = Color(0x80F2F2F3)
+
+val DividerColor = Color(0xFF4D555E)
+
+val OrangeStartColor = Color(0xFFF98509)
+
+val OrangeEndColor = Color(0xFFF95D00)
+
+val BlueLight = Color(0xFF2683ED)
