@@ -36,7 +36,7 @@ fun BasicGreenButton(
             disabledContainerColor = MaterialTheme.colorScheme.primary,
             disabledContentColor = MaterialTheme.colorScheme.primary,
         ),
-        shape = RoundedCornerShape(12.dp),
+        shape = RoundedCornerShape(30.dp),
         contentPadding = PaddingValues(top = 18.dp, bottom = 18.dp),
         content = {
             Text(

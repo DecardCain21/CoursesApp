@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.coursesapp.authorization.AuthorizationScreen
 import com.example.coursesapp.onboarding.OnboardingScreen
 import com.example.coursesapp.ui.theme.CoursesAppTheme
 
@@ -28,7 +29,7 @@ class MainActivity : ComponentActivity() {
                         .fillMaxSize()
                         .background(MaterialTheme.colorScheme.background)
                 ) {
-                    OnboardingScreen()
+                    AuthorizationScreen()
                     /*Greeting(
                         name = "Android",
                         modifier = Modifier.padding(innerPadding)
