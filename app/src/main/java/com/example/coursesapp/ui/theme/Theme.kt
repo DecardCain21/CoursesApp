@@ -38,13 +38,13 @@ private val DarkColorScheme = darkColorScheme(
     onPrimary = Color.Black,
 
     //
-    surfaceContainerLow = Color.White,
+    surfaceContainerLow = White,
 
     // Цвет текста и иконок поверх secondary
     onSecondary = Grey,
 
     // Цвет текста и иконок поверх tertiary
-    onTertiary = Color.White,
+    onTertiary = White,
 
     // Цвет текста и иконок поверх background
     // (Используется для текста, отображаемого на основном фоне приложения)

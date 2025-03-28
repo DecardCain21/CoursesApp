@@ -2,6 +2,7 @@ package com.example.coursesapp.core.composable
 
 import androidx.compose.foundation.interaction.FocusInteraction
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
@@ -31,7 +32,10 @@ fun CustomTextField(
     value: String = "",
     onValueChange: (String) -> Unit,
     placeholder: String = "",
-    keyboardType: KeyboardType = KeyboardType.Text
+    roundedCornerShape: RoundedCornerShape = RoundedCornerShape(30.dp),
+    keyboardType: KeyboardType = KeyboardType.Text,
+    leadingIcon: @Composable (() -> Unit)? = null,
+    containerColor: Color = BasicGrey
 ) {
 
     var isFocused by remember { mutableStateOf(false) }
@@ -63,11 +67,14 @@ fun CustomTextField(
         colors = TextFieldDefaults.colors(
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,
-            focusedContainerColor = BasicGrey,
-            unfocusedContainerColor = BasicGrey,
-            disabledContainerColor = BasicGrey
+            focusedContainerColor = containerColor,
+            unfocusedContainerColor = containerColor,
+            disabledContainerColor = containerColor
         ),
-        shape = RoundedCornerShape(30.dp),
+        leadingIcon = leadingIcon?.let { icon ->
+            { icon() }
+        },
+        shape = roundedCornerShape,
         keyboardOptions = KeyboardOptions(
             keyboardType = keyboardType
         ),
