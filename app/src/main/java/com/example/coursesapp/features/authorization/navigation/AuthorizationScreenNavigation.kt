@@ -1,9 +1,9 @@
-package com.example.coursesapp.authorization.navigation
+package com.example.coursesapp.features.authorization.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.example.coursesapp.authorization.AuthorizationScreen
+import com.example.coursesapp.features.authorization.ui.AuthorizationScreen
 
 const val AUTH_ROUTE = "authorization"
 

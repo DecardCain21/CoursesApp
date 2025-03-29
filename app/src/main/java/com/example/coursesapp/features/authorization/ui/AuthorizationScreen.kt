@@ -1,4 +1,4 @@
-package com.example.coursesapp.authorization
+package com.example.coursesapp.features.authorization.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -112,8 +112,8 @@ fun PasswordTextInput() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 8.dp, bottom = 16.dp),
-        value = stringResource(R.string.enter_password),
-        placeholder = "123",
+        value = "",
+        placeholder = stringResource(R.string.enter_password),
         onValueChange = {},
     )
 }

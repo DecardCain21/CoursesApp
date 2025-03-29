@@ -1,4 +1,4 @@
-package com.example.coursesapp.onboarding
+package com.example.coursesapp.features.onboarding
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column

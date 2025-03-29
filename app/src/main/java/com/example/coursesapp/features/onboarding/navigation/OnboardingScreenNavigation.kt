@@ -1,9 +1,9 @@
-package com.example.coursesapp.onboarding.navigation
+package com.example.coursesapp.features.onboarding.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.example.coursesapp.onboarding.OnboardingScreen
+import com.example.coursesapp.features.onboarding.OnboardingScreen
 
 const val ONBOARD_ROUTE = "onboarding"
 
