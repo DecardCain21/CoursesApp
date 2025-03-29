@@ -29,8 +29,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.coursesapp.R
-import com.example.coursesapp.core.composable.BasicGreenButton
-import com.example.coursesapp.core.composable.CustomTextField
+import com.example.coursesapp.core.composable.CourseGreenButton
+import com.example.coursesapp.core.composable.CourseTextField
 import com.example.coursesapp.ui.theme.BlueLight
 import com.example.coursesapp.ui.theme.CoursesAppTheme
 import com.example.coursesapp.ui.theme.DividerColor
@@ -51,15 +51,10 @@ fun AuthorizationScreen(
             .padding(horizontal = 16.dp)
     ) {
         Column {
-            Text(
-                modifier = Modifier.padding(top = 100.dp),
-                text = stringResource(R.string.enter),
-                fontSize = 36.sp,
-                color = MaterialTheme.colorScheme.tertiary
-            )
+            Header()
             EmailTextInput()
             PasswordTextInput()
-            BasicGreenButton(
+            CourseGreenButton(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 24.dp),
@@ -72,37 +67,19 @@ fun AuthorizationScreen(
                 thickness = 1.dp,
                 color = DividerColor
             )
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-            ) {
-                Spacer(modifier = Modifier.width(16.dp))
-                //ButtonLinkV()
-                SocialAuthButton(
-                    modifier = Modifier,
-                    backgroundColor = BlueLight,
-                    iconPainter = painterResource(R.drawable.vk),
-                    contentDescription = "",
-                    iconTint = Color.White,
-                    onClick = {}
-                )
-                Spacer(modifier = Modifier.width(16.dp))
-                //ButtonLinkO()
-                SocialAuthButton(
-                    modifier = Modifier,
-                    gradientColors = listOf(OrangeEndColor, OrangeStartColor),
-                    iconPainter = painterResource(R.drawable.odnoclass),
-                    contentDescription = "",
-                    iconTint = Color.White,
-                    onClick = {}
-                )
-                Spacer(modifier = Modifier.width(16.dp))
-            }
-
-
+            Body()
         }
-
     }
+}
+
+@Composable
+private fun Header() {
+    Text(
+        modifier = Modifier.padding(top = 100.dp),
+        text = stringResource(R.string.enter),
+        fontSize = 36.sp,
+        color = MaterialTheme.colorScheme.tertiary
+    )
 }
 
 @Composable
@@ -113,12 +90,12 @@ fun EmailTextInput() {
         fontSize = 18.sp,
         color = MaterialTheme.colorScheme.tertiary
     )
-    CustomTextField(
+    CourseTextField(
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 8.dp),
-        value = "example@gmail.com",
-        placeholder = "example@gmail.com",
+        value = "",
+        placeholder = stringResource(R.string.placeholder_text_email),
         onValueChange = {},
     )
 }
@@ -131,7 +108,7 @@ fun PasswordTextInput() {
         fontSize = 18.sp,
         color = MaterialTheme.colorScheme.tertiary
     )
-    CustomTextField(
+    CourseTextField(
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 8.dp, bottom = 16.dp),
@@ -154,6 +131,7 @@ fun OptionsView() {
             color = MaterialTheme.colorScheme.onPrimary
         )
         Text(
+            modifier = Modifier.padding(start = 5.dp),
             text = stringResource(R.string.registration),
             color = MaterialTheme.colorScheme.primary
         )
@@ -164,47 +142,6 @@ fun OptionsView() {
         text = stringResource(R.string.forgot_password),
         color = MaterialTheme.colorScheme.primary
     )
-}
-
-@Composable
-fun ButtonLinkV() {
-    IconButton(
-        modifier = Modifier
-            .height(40.dp)
-            .width(156.dp)
-            .background(
-                color = BlueLight,
-                shape = RoundedCornerShape(30.dp)
-            ),
-        onClick = {},
-    ) {
-        Icon(
-            painter = painterResource(R.drawable.vk),
-            contentDescription = "",
-            tint = Color.White
-        )
-    }
-}
-
-@Composable
-fun ButtonLinkO() {
-    IconButton(modifier = Modifier
-        .height(40.dp)
-        .width(156.dp)
-        .background(
-            brush = Brush.verticalGradient(
-                colors = listOf(OrangeEndColor, OrangeStartColor),
-                startY = 50f,
-                endY = 0f
-            ),
-            shape = RoundedCornerShape(30.dp)
-        ), onClick = {}) {
-        Icon(
-            painter = painterResource(R.drawable.odnoclass),
-            contentDescription = "",
-            tint = Color.White
-        )
-    }
 }
 
 @Composable
@@ -247,6 +184,36 @@ fun Color.toBrush(): Brush {
         startY = 0f,
         endY = 0f
     )
+}
+
+@Composable
+private fun Body() {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+    ) {
+        Spacer(modifier = Modifier.width(16.dp))
+        //ButtonLinkV()
+        SocialAuthButton(
+            modifier = Modifier,
+            backgroundColor = BlueLight,
+            iconPainter = painterResource(R.drawable.vk),
+            contentDescription = "",
+            iconTint = Color.White,
+            onClick = {}
+        )
+        Spacer(modifier = Modifier.width(16.dp))
+        //ButtonLinkO()
+        SocialAuthButton(
+            modifier = Modifier,
+            gradientColors = listOf(OrangeEndColor, OrangeStartColor),
+            iconPainter = painterResource(R.drawable.odnoclass),
+            contentDescription = "",
+            iconTint = Color.White,
+            onClick = {}
+        )
+        Spacer(modifier = Modifier.width(16.dp))
+    }
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF141218)

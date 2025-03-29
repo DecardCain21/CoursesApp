@@ -52,8 +52,7 @@ fun CourseItem(
         ),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp, horizontal = 16.dp)
-            .height(236.dp) // Увеличил высоту для контента
+             // Увеличил высоту для контента
     ) {
         Column(modifier = Modifier.background(color = DarkGrey)) {
             // Верхняя часть с изображением
@@ -138,7 +137,7 @@ fun BodyItem(title: String, description: String) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 5.dp)
+                .padding(top = 10.dp)
         ) {
             Text(
                 text = "999P",
@@ -162,6 +161,7 @@ fun BodyItem(title: String, description: String) {
                 )
             }
         }
+        Spacer(modifier = Modifier.padding(8.dp))
     }
 }
 

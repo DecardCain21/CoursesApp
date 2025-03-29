@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.sp
 import com.example.coursesapp.ui.theme.CoursesAppTheme
 
 @Composable
-fun BasicGreenButton(
+fun CourseGreenButton(
     modifier: Modifier = Modifier,
     text: String,
     onClick: () -> Unit,
@@ -41,7 +41,8 @@ fun BasicGreenButton(
         content = {
             Text(
                 text = text,
-                fontSize = 20.sp,
+                style = MaterialTheme.typography.labelLarge,
+                fontSize = 14.sp,
                 color =
                 if (isEnabled) {
                     enabledTextColor
@@ -58,7 +59,7 @@ fun BasicGreenButton(
 @Composable
 private fun BasicButtonPreview() {
     CoursesAppTheme {
-        BasicGreenButton(
+        CourseGreenButton(
             modifier = Modifier.fillMaxWidth(),
             text = "Кнопка",
             onClick = { }

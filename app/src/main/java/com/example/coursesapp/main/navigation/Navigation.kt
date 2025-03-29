@@ -1,28 +1,29 @@
 package com.example.coursesapp.main.navigation
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithCache
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.coursesapp.R
 import com.example.coursesapp.authorization.AuthorizationScreen
 import com.example.coursesapp.authorization.navigation.AUTH_ROUTE
 import com.example.coursesapp.home.HomeScreen
@@ -30,25 +31,15 @@ import com.example.coursesapp.home.navigation.HOME_ROUTE
 import com.example.coursesapp.home.navigation.navigateToHomeScreen
 import com.example.coursesapp.onboarding.OnboardingScreen
 import com.example.coursesapp.onboarding.navigation.ONBOARD_ROUTE
+import com.example.coursesapp.ui.theme.BasicGreen
+import com.example.coursesapp.ui.theme.BasicGrey
+import com.example.coursesapp.ui.theme.DarkGrey
+import com.example.coursesapp.ui.theme.StrokeColor
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun Navigation() {
     val navController: NavHostController = rememberNavController()
-    /*val items = listOf(
-        BottomNavigationItem(
-            title = "Главная",
-            icon = Icons.Filled.Home,
-        ),
-        BottomNavigationItem(
-            title = "Избранное",
-            icon = Icons.Filled.Check,
-        ),
-        BottomNavigationItem(
-            title = "Аккаунт",
-            icon = Icons.Filled.Accessibility
-        )
-    )*/
     val noBottomBarScreens = listOf(ONBOARD_ROUTE, AUTH_ROUTE)
 
     Scaffold(
@@ -56,19 +47,54 @@ fun Navigation() {
             val currentBackStackEntry by navController.currentBackStackEntryAsState()
             val currentRoute = currentBackStackEntry?.destination?.route
 
-            if (currentRoute !in noBottomBarScreens) { // Показываем BottomBar, если не в списке
+            if (currentRoute !in noBottomBarScreens) {
                 NavigationBar(
-                    modifier = Modifier.height(96.dp),
-                    containerColor = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier
+                        .wrapContentSize()
+                        .drawWithCache {
+                            val strokeWidth = 1.dp.toPx()
+                            onDrawWithContent {
+                                drawContent()
+                                drawLine(
+                                    color = StrokeColor,
+                                    start = Offset(0f, 0f),
+                                    end = Offset(size.width, 0f),
+                                    strokeWidth = strokeWidth
+                                )
+                            }
+                        },
+                    containerColor = DarkGrey,
                 ) {
                     val items = listOf(
-                        BottomNavigationItem(HOME_ROUTE, Icons.Default.Home, HOME_ROUTE),
-                        BottomNavigationItem(AUTH_ROUTE, Icons.Default.Person, AUTH_ROUTE)
+                        BottomNavigationItem(
+                            title = "Главная",
+                            icon = ImageVector.vectorResource(R.drawable.ic_home),
+                            route = HOME_ROUTE,
+                            titleColor = BasicGreen
+                        ),
+                        BottomNavigationItem(
+                            title = "Избранное",
+                            icon = ImageVector.vectorResource(R.drawable.ic_bookmarkbig),
+                            route = AUTH_ROUTE
+                        ),
+                        BottomNavigationItem(
+                            title = "Аккаунт",
+                            icon = ImageVector.vectorResource(R.drawable.ic_account),
+                            route = ""
+                        )
                     )
 
                     items.forEach { item ->
                         NavigationBarItem(
+                            modifier = Modifier,
                             selected = currentRoute == item.route,
+                            label = {
+                                Text(
+                                    text = item.title,
+                                    style = MaterialTheme.typography.labelMedium,
+                                    color = item.titleColor
+                                )
+                            },
                             onClick = {
                                 if (currentRoute != item.route) {
                                     navController.navigate(item.route) {
@@ -81,9 +107,10 @@ fun Navigation() {
                                 }
                             },
                             colors = NavigationBarItemDefaults.colors(
-                                indicatorColor = MaterialTheme.colorScheme.tertiary
+                                indicatorColor = BasicGrey,
+                                selectedIconColor = BasicGreen,
                             ),
-                            alwaysShowLabel = false,
+                            alwaysShowLabel = true,
                             icon = {
                                 Icon(
                                     imageVector = item.icon,
@@ -95,11 +122,11 @@ fun Navigation() {
                 }
             }
         }
-    ) { innerPadding ->
+    ) {
         NavHost(
             navController = navController,
             startDestination = AUTH_ROUTE,
-            modifier = Modifier.padding(innerPadding)
+            modifier = Modifier
         ) {
             composable(AUTH_ROUTE) { AuthorizationScreen(navigateToMainScreen = { navController.navigateToHomeScreen() }) }
             composable(HOME_ROUTE) { HomeScreen() }
@@ -112,5 +139,6 @@ fun Navigation() {
 data class BottomNavigationItem(
     val title: String,
     val icon: ImageVector,
-    val route: String
+    val route: String,
+    val titleColor: Color = Color.White
 )

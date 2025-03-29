@@ -2,7 +2,6 @@ package com.example.coursesapp.core.composable
 
 import androidx.compose.foundation.interaction.FocusInteraction
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
@@ -27,7 +26,7 @@ import com.example.coursesapp.ui.theme.BasicGreyText
 import com.example.coursesapp.ui.theme.CoursesAppTheme
 
 @Composable
-fun CustomTextField(
+fun CourseTextField(
     modifier: Modifier = Modifier,
     value: String = "",
     onValueChange: (String) -> Unit,
@@ -92,7 +91,7 @@ fun CustomTextField(
 @Composable
 private fun PreviewCustomTextField() {
     CoursesAppTheme {
-        CustomTextField(
+        CourseTextField(
             onValueChange = {},
             placeholder = "example@gmail.com"
         )

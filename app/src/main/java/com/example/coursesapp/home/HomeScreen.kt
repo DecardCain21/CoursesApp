@@ -24,11 +24,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.coursesapp.R
-import com.example.coursesapp.core.composable.CustomTextField
+import com.example.coursesapp.core.composable.CourseTextField
 import com.example.coursesapp.home.items.CourseItem
 import com.example.coursesapp.ui.theme.BasicGreen
 import com.example.coursesapp.ui.theme.CoursesAppTheme
@@ -45,21 +46,13 @@ fun HomeScreen(
     ) {
         Column {
             HeaderHome()
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 16.dp),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                Spacer(modifier = Modifier.weight(1f))
-                DataFilterView()
-            }
-
+            DataFilterView()
             val items = listOf("Item 1", "Item 2", "Item 3", "Item 1", "Item 2", "Item 3")
-
             LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.spacedBy(8.dp), // Отступы между элементами
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(top = 16.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp),
                 state = rememberLazyListState()
             ) {
                 items(items) {
@@ -72,17 +65,17 @@ fun HomeScreen(
 }
 
 @Composable
-fun HeaderHome() {
+private fun HeaderHome() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 16.dp),
+            .padding(top = 56.dp),
         horizontalArrangement = Arrangement.Center
     ) {
-        CustomTextField(
-            value = "example@gmail.com",
-            placeholder = "example@gmail.com",
-            onValueChange = { /*viewModel.handleEvent(HomeScreenUiEvent.InputLogin(it))*/ },
+        CourseTextField(
+            value = "",
+            placeholder = stringResource(R.string.placeholder_text_email),
+            onValueChange = {},
             containerColor = DarkGrey,
             roundedCornerShape = RoundedCornerShape(28.dp),
             leadingIcon = {
@@ -97,16 +90,16 @@ fun HeaderHome() {
         IconButton(
             onClick = {},
             modifier = Modifier
-                .size(56.dp) // Квадратная основа для круга
+                .size(56.dp)
                 .align(Alignment.CenterVertically)
                 .background(
                     color = DarkGrey,
-                    shape = CircleShape // Используем встроенную круглую форму
+                    shape = CircleShape
                 )
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.filter),
-                contentDescription = "Фильтры",
+                contentDescription = "",
                 tint = Color.White,
                 modifier = Modifier.size(24.dp)
             )
@@ -115,19 +108,27 @@ fun HeaderHome() {
 }
 
 @Composable
-fun DataFilterView(){
-    Text(
-        modifier = Modifier.padding(end = 4.dp),
-        textAlign = TextAlign.End,
-        text = "По дате добавления",
-        color = MaterialTheme.colorScheme.primary
-    )
-    Icon(
-        painter = painterResource(id = R.drawable.arrow_down_up),
-        contentDescription = "По дате добавления",
-        tint = BasicGreen,
-        modifier = Modifier.size(15.dp)
-    )
+private fun DataFilterView() {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 16.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Spacer(modifier = Modifier.weight(1f))
+        Text(
+            modifier = Modifier.padding(end = 4.dp),
+            textAlign = TextAlign.End,
+            text = stringResource(R.string.by_date_added),
+            color = MaterialTheme.colorScheme.primary
+        )
+        Icon(
+            painter = painterResource(id = R.drawable.arrow_down_up),
+            contentDescription = "",
+            tint = BasicGreen,
+            modifier = Modifier.size(15.dp)
+        )
+    }
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF141218)

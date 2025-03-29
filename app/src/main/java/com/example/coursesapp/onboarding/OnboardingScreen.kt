@@ -2,6 +2,7 @@ package com.example.coursesapp.onboarding
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,10 +13,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.coursesapp.R
-import com.example.coursesapp.core.composable.BasicGreenButton
+import com.example.coursesapp.core.composable.CourseGreenButton
 import com.example.coursesapp.ui.theme.CoursesAppTheme
 
 @Composable
@@ -28,24 +30,14 @@ fun OnboardingScreen(
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            modifier = Modifier.padding(top = 100.dp),
-            text = "Тысячи курсов \nв одном месте",
-            color = MaterialTheme.colorScheme.tertiary
-        )
-        Image(
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .padding(top = 32.dp),
-            painter = painterResource(id = R.drawable.courses),
-            contentDescription = "Logo",
-        )
+        Header()
+        Logo()
         Spacer(modifier = Modifier.weight(1f))
-        BasicGreenButton(
+        CourseGreenButton(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 16.dp, end = 16.dp, bottom = 16.dp),
-            text = "Продолжить",
+            text = stringResource(R.string.continue_word),
             buttonColor = MaterialTheme.colorScheme.primary,
             disabledTextColor = MaterialTheme.colorScheme.tertiary,
             enabledTextColor = MaterialTheme.colorScheme.tertiary,
@@ -55,6 +47,27 @@ fun OnboardingScreen(
 
     }
 
+}
+
+@Composable
+private fun Header() {
+    Text(
+        modifier = Modifier.padding(top = 100.dp),
+        text = stringResource(R.string.header_onboarding),
+        color = MaterialTheme.colorScheme.tertiary
+    )
+}
+
+@Composable
+private fun ColumnScope.Logo() {
+    Image(
+        modifier = Modifier
+            .fillMaxWidth()
+            .align(Alignment.CenterHorizontally)
+            .padding(top = 32.dp),
+        painter = painterResource(id = R.drawable.courses),
+        contentDescription = "Logo",
+    )
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF141218)
