@@ -4,7 +4,11 @@
     <string name="enter_password">Введите пароль</string>
     <string name="enter">Вход</string>
     <string name="no_account">Нету аккаунта?</string>
-    <string name="registration">" Регистрация"</string>
-    <string name="forgot_password">"Забыл пароль"</string>
+    <string name="registration"> Регистрация</string>
+    <string name="forgot_password">Забыл пароль</string>
     <string name="email">Email</string>
+    <string name="placeholder_text_email">example@gmail.com</string>
+    <string name="by_date_added">По дате добавления</string>
+    <string name="continue_word">Продолжить</string>
+    <string name="header_onboarding">Тысячи курсов \nв одном месте</string>
 </resources>

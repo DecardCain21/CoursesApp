@@ -26,12 +26,15 @@ import com.example.coursesapp.ui.theme.BasicGreyText
 import com.example.coursesapp.ui.theme.CoursesAppTheme
 
 @Composable
-fun CustomTextField(
+fun CourseTextField(
     modifier: Modifier = Modifier,
     value: String = "",
     onValueChange: (String) -> Unit,
     placeholder: String = "",
-    keyboardType: KeyboardType = KeyboardType.Text
+    roundedCornerShape: RoundedCornerShape = RoundedCornerShape(30.dp),
+    keyboardType: KeyboardType = KeyboardType.Text,
+    leadingIcon: @Composable (() -> Unit)? = null,
+    containerColor: Color = BasicGrey
 ) {
 
     var isFocused by remember { mutableStateOf(false) }
@@ -63,11 +66,14 @@ fun CustomTextField(
         colors = TextFieldDefaults.colors(
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,
-            focusedContainerColor = BasicGrey,
-            unfocusedContainerColor = BasicGrey,
-            disabledContainerColor = BasicGrey
+            focusedContainerColor = containerColor,
+            unfocusedContainerColor = containerColor,
+            disabledContainerColor = containerColor
         ),
-        shape = RoundedCornerShape(30.dp),
+        leadingIcon = leadingIcon?.let { icon ->
+            { icon() }
+        },
+        shape = roundedCornerShape,
         keyboardOptions = KeyboardOptions(
             keyboardType = keyboardType
         ),
@@ -85,7 +91,7 @@ fun CustomTextField(
 @Composable
 private fun PreviewCustomTextField() {
     CoursesAppTheme {
-        CustomTextField(
+        CourseTextField(
             onValueChange = {},
             placeholder = "example@gmail.com"
         )
