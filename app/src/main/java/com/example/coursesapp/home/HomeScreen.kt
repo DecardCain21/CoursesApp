@@ -25,9 +25,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.coursesapp.R
 import com.example.coursesapp.core.composable.CourseTextField
 import com.example.coursesapp.home.items.CourseItem
@@ -82,7 +84,7 @@ private fun HeaderHome() {
                 Icon(
                     painter = painterResource(id = R.drawable.search),
                     contentDescription = "Email",
-                    modifier = Modifier.size(20.dp)
+                    modifier = Modifier.padding(start = 4.dp)
                 )
             }
         )
@@ -101,7 +103,6 @@ private fun HeaderHome() {
                 painter = painterResource(id = R.drawable.filter),
                 contentDescription = "",
                 tint = Color.White,
-                modifier = Modifier.size(24.dp)
             )
         }
     }
@@ -120,6 +121,8 @@ private fun DataFilterView() {
             modifier = Modifier.padding(end = 4.dp),
             textAlign = TextAlign.End,
             text = stringResource(R.string.by_date_added),
+            fontWeight = FontWeight(500),
+            fontSize = 14.sp,
             color = MaterialTheme.colorScheme.primary
         )
         Icon(

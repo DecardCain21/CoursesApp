@@ -27,8 +27,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.coursesapp.R
@@ -52,7 +55,7 @@ fun CourseItem(
         ),
         modifier = Modifier
             .fillMaxWidth()
-             // Увеличил высоту для контента
+        // Увеличил высоту для контента
     ) {
         Column(modifier = Modifier.background(color = DarkGrey)) {
             // Верхняя часть с изображением
@@ -149,7 +152,7 @@ fun BodyItem(title: String, description: String) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     text = "Подробнее",
-                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight(600),
                     fontSize = 12.sp,
                     color = BasicGreen
                 )
