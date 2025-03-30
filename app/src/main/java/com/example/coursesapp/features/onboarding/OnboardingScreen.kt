@@ -18,11 +18,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.coursesapp.R
 import com.example.coursesapp.core.composable.CourseGreenButton
+import com.example.coursesapp.main.MainViewModel
 import com.example.coursesapp.ui.theme.CoursesAppTheme
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun OnboardingScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    navigateToMainScreen: () -> Unit,
+    viewModel: OnBoardingScreenViewModel = koinViewModel()
 ) {
 
     Column(
@@ -41,8 +45,11 @@ fun OnboardingScreen(
             buttonColor = MaterialTheme.colorScheme.primary,
             disabledTextColor = MaterialTheme.colorScheme.tertiary,
             enabledTextColor = MaterialTheme.colorScheme.tertiary,
-            isEnabled = false,
-            onClick = {}
+            isEnabled = true,
+            onClick = {
+                viewModel.setAuth()
+                navigateToMainScreen()
+            }
         )
 
     }
@@ -74,6 +81,6 @@ private fun ColumnScope.Logo() {
 @Composable
 private fun OnboardingScreen() {
     CoursesAppTheme {
-        OnboardingScreen(modifier = Modifier)
+        OnboardingScreen(modifier = Modifier, navigateToMainScreen = {})
     }
 }

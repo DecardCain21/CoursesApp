@@ -13,8 +13,8 @@ fun NavController.navigateToOnboardingScreen() = navigate(ONBOARD_ROUTE) {
     }
 }
 
-fun NavGraphBuilder.onboardingScreen() {
+fun NavGraphBuilder.onboardingScreen(navigateToMainScreen: () -> Unit) {
     composable(route = ONBOARD_ROUTE) {
-        OnboardingScreen()
+        OnboardingScreen(navigateToMainScreen = navigateToMainScreen)
     }
 }

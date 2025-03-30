@@ -40,9 +40,6 @@ import com.example.coursesapp.ui.theme.OrangeStartColor
 @Composable
 fun AuthorizationScreen(
     modifier: Modifier = Modifier,
-    onForgotPasswordClick: () -> Unit = {},
-    onPressButtonLeft: () -> Unit = {},
-    onPressRight: () -> Unit = {},
     navigateToMainScreen: () -> Unit = {},
 ) {
     Box(
@@ -83,7 +80,7 @@ private fun Header() {
 }
 
 @Composable
-fun EmailTextInput() {
+private fun EmailTextInput() {
     Text(
         modifier = Modifier.padding(top = 28.dp),
         text = stringResource(R.string.email),
@@ -101,7 +98,7 @@ fun EmailTextInput() {
 }
 
 @Composable
-fun PasswordTextInput() {
+private fun PasswordTextInput() {
     Text(
         modifier = Modifier.padding(top = 16.dp),
         text = stringResource(R.string.password),
@@ -119,7 +116,7 @@ fun PasswordTextInput() {
 }
 
 @Composable
-fun OptionsView() {
+private fun OptionsView() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -145,7 +142,7 @@ fun OptionsView() {
 }
 
 @Composable
-fun SocialAuthButton(
+private fun SocialAuthButton(
     modifier: Modifier = Modifier,
     iconPainter: Painter,
     onClick: () -> Unit,

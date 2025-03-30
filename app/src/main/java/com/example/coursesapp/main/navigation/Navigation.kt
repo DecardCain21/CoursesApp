@@ -24,11 +24,15 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.coursesapp.R
-import com.example.coursesapp.features.authorization.ui.AuthorizationScreen
+import com.example.coursesapp.features.account.AccountScreen
+import com.example.coursesapp.features.account.navigation.ACCOUNT_ROUTE
 import com.example.coursesapp.features.authorization.navigation.AUTH_ROUTE
-import com.example.coursesapp.features.home.ui.HomeScreen
+import com.example.coursesapp.features.authorization.ui.AuthorizationScreen
+import com.example.coursesapp.features.favorites.FavoriteScreen
+import com.example.coursesapp.features.favorites.navigation.FAVORITES_ROUTE
 import com.example.coursesapp.features.home.navigation.HOME_ROUTE
 import com.example.coursesapp.features.home.navigation.navigateToHomeScreen
+import com.example.coursesapp.features.home.ui.HomeScreen
 import com.example.coursesapp.features.onboarding.OnboardingScreen
 import com.example.coursesapp.features.onboarding.navigation.ONBOARD_ROUTE
 import com.example.coursesapp.ui.theme.BasicGreen
@@ -38,7 +42,7 @@ import com.example.coursesapp.ui.theme.StrokeColor
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun Navigation() {
+fun Navigation(isAuthenticated: Boolean) {
     val navController: NavHostController = rememberNavController()
     val noBottomBarScreens = listOf(ONBOARD_ROUTE, AUTH_ROUTE)
 
@@ -75,12 +79,12 @@ fun Navigation() {
                         BottomNavigationItem(
                             title = "Избранное",
                             icon = ImageVector.vectorResource(R.drawable.ic_bookmarkbig),
-                            route = AUTH_ROUTE
+                            route = FAVORITES_ROUTE
                         ),
                         BottomNavigationItem(
                             title = "Аккаунт",
                             icon = ImageVector.vectorResource(R.drawable.ic_account),
-                            route = ""
+                            route = ACCOUNT_ROUTE
                         )
                     )
 
@@ -92,7 +96,6 @@ fun Navigation() {
                                 Text(
                                     text = item.title,
                                     style = MaterialTheme.typography.labelMedium,
-                                    color = item.titleColor
                                 )
                             },
                             onClick = {
@@ -108,6 +111,8 @@ fun Navigation() {
                             },
                             colors = NavigationBarItemDefaults.colors(
                                 indicatorColor = BasicGrey,
+                                disabledTextColor = Color.White,
+                                selectedTextColor = BasicGreen,
                                 selectedIconColor = BasicGreen,
                             ),
                             alwaysShowLabel = true,
@@ -125,12 +130,14 @@ fun Navigation() {
     ) {
         NavHost(
             navController = navController,
-            startDestination = AUTH_ROUTE,
+            startDestination = if (isAuthenticated) AUTH_ROUTE else ONBOARD_ROUTE,
             modifier = Modifier
         ) {
             composable(AUTH_ROUTE) { AuthorizationScreen(navigateToMainScreen = { navController.navigateToHomeScreen() }) }
             composable(HOME_ROUTE) { HomeScreen() }
-            composable(ONBOARD_ROUTE) { OnboardingScreen() }
+            composable(ONBOARD_ROUTE) { OnboardingScreen(navigateToMainScreen = { navController.navigateToHomeScreen() }) }
+            composable(ACCOUNT_ROUTE) { AccountScreen() }
+            composable(FAVORITES_ROUTE) { FavoriteScreen() }
         }
     }
 
