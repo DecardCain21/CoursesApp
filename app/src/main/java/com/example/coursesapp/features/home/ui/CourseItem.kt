@@ -1,4 +1,4 @@
-package com.example.coursesapp.features.home.domain.items
+package com.example.coursesapp.features.home.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

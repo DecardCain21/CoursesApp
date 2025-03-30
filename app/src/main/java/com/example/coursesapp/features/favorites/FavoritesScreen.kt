@@ -17,7 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.coursesapp.R
-import com.example.coursesapp.features.home.domain.items.CourseItem
+import com.example.coursesapp.features.home.ui.CourseItem
 import com.example.coursesapp.ui.theme.CoursesAppTheme
 
 @Composable
