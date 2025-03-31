@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.hilt.android)
     alias(libs.plugins.google.ksp)
     alias(libs.plugins.compose.compiler)
 }
@@ -44,8 +43,8 @@ android {
     }
     composeCompiler {
         reportsDestination = layout.buildDirectory.dir("compose_compiler")
-        stabilityConfigurationFile =
-            rootProject.layout.projectDirectory.file("stability_config.conf")
+        stabilityConfigurationFiles =
+            listOf(rootProject.layout.projectDirectory.file("stability_config.conf"))
     }
     packaging {
         resources {
@@ -69,17 +68,17 @@ dependencies {
     // Material Icons
     implementation(libs.androidx.material.icons.extended)
 
-    // Dependency Injection (Hilt)
-    implementation(libs.androidx.hilt.navigation.compose)
-    implementation(libs.hilt.android)
-    implementation(libs.androidx.storage)
-    ksp(libs.hilt.android.compiler)
+    // Dependency Injection (Koin)
+    implementation(project.dependencies.platform(libs.koin.bom))
+    implementation(libs.koin.core)
+    implementation("io.insert-koin:koin-androidx-compose:3.5.0")
+    implementation("io.insert-koin:koin-android:3.5.0")
 
     // Network (Retrofit, Gson)
     implementation(libs.retrofit)
     implementation(libs.logging.interceptor)
     implementation(libs.converter.gson)
-    implementation ("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation (libs.okhttp)
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.android)
