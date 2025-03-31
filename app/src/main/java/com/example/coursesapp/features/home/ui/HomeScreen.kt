@@ -1,6 +1,9 @@
 package com.example.coursesapp.features.home.ui
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,6 +23,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -30,8 +35,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.coursesapp.R
-import com.example.coursesapp.core.composable.CourseTextField
+import com.example.coursesapp.core.ui.composable.CourseItem
+import com.example.coursesapp.core.ui.composable.CourseTextField
+import com.example.coursesapp.features.courses.domain.models.Course
+import com.example.coursesapp.features.home.ui.state.HomeScreenState
+import com.example.coursesapp.features.home.ui.state.HomeScreenUiEvent
 import com.example.coursesapp.ui.theme.BasicGreen
 import com.example.coursesapp.ui.theme.CoursesAppTheme
 import com.example.coursesapp.ui.theme.DarkGrey
@@ -42,28 +52,53 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     viewModel: HomeScreenViewModel = koinViewModel()
 ) {
+    val state by viewModel.uiState.collectAsStateWithLifecycle()
+
     Box(
         modifier = modifier
             .fillMaxSize()
             .padding(horizontal = 16.dp)
     ) {
-        Column {
-            HeaderHome()
-            DataFilterView()
-            val items = listOf("Item 1", "Item 2", "Item 3", "Item 1", "Item 2", "Item 3")
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(top = 16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp),
-                state = rememberLazyListState()
-            ) {
-                items(items) {
-                    CourseItem(title = it)
-                }
-            }
 
+        when (val currentSate = state) {
+            is HomeScreenState.Data -> Data(state = currentSate, onSortByData = {
+                viewModel.handleEventHomeScreen(
+                    HomeScreenUiEvent.SortByDate
+                )
+            }, clickOnBookmark = { viewModel.handleEventHomeScreen(HomeScreenUiEvent.FavoriteCourse(it)) })
+
+            is HomeScreenState.Empty -> Unit // TODO
+            is HomeScreenState.Error -> Unit // TODO
+            is HomeScreenState.Loading -> Unit // TODO
         }
+    }
+}
+
+@Composable
+private fun Data(
+    state: HomeScreenState.Data,
+    onSortByData: () -> Unit,
+    clickOnBookmark: (Course) -> Unit
+) {
+    Column {
+        HeaderHome()
+        DataFilterView(onSortByData = onSortByData)
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            state = rememberLazyListState()
+        ) {
+            items(state.courses) { course ->
+                CourseItem(
+                    title = course.title,
+                    description = course.description,
+                    clickOnBookmark = { clickOnBookmark(course) }
+                )
+            }
+        }
+
     }
 }
 
@@ -84,7 +119,7 @@ private fun HeaderHome() {
             leadingIcon = {
                 Icon(
                     painter = painterResource(id = R.drawable.search),
-                    contentDescription = "Email",
+                    contentDescription = "",
                     modifier = Modifier.padding(start = 4.dp)
                 )
             }
@@ -109,12 +144,18 @@ private fun HeaderHome() {
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun DataFilterView() {
+private fun DataFilterView(onSortByData: () -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 16.dp),
+            .padding(top = 16.dp)
+            .combinedClickable(
+                indication = null,
+                onClick = { onSortByData() },
+                interactionSource = remember { MutableInteractionSource() },
+            ),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Spacer(modifier = Modifier.weight(1f))
@@ -139,6 +180,26 @@ private fun DataFilterView() {
 @Composable
 private fun HomeScreenPreview() {
     CoursesAppTheme {
-        HomeScreen()
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp)
+        ) {
+            Data(
+                state = HomeScreenState.Data(
+                    listOf(
+                        Course(
+                            id = 1,
+                            title = "123",
+                            description = "Тестовое описание",
+                            price = "999",
+                            startDate = "12.03.2053",
+                            isLiked = false,
+                            publishDate = "12.03.2053",
+                            rating = "10"
+                        )
+                    )
+                ), onSortByData = {}, clickOnBookmark = {})
+        }
     }
 }

@@ -1,15 +1,28 @@
 <resources>
     <string name="app_name">CoursesApp</string>
-    <string name="password">Пароль</string>
-    <string name="enter_password">Введите пароль</string>
+
+    <!-- Onboarding Screen-->
+    <string name="continue_word">Продолжить</string>
+    <string name="header_onboarding">Тысячи курсов \nв одном месте</string>
+
+    <!--Authorization Screen-->
     <string name="enter">Вход</string>
+    <string name="email">Email</string>
+    <string name="password">Пароль</string>
+    <string name="placeholder_text_password">Введите пароль</string>
+    <string name="placeholder_text_email">example@gmail.com</string>
     <string name="no_account">Нету аккаунта?</string>
     <string name="registration"> Регистрация</string>
     <string name="forgot_password">Забыл пароль</string>
-    <string name="email">Email</string>
-    <string name="placeholder_text_email">example@gmail.com</string>
+
+    <!--Home Screen-->
     <string name="by_date_added">По дате добавления</string>
-    <string name="continue_word">Продолжить</string>
-    <string name="header_onboarding">Тысячи курсов \nв одном месте</string>
+
+    <!--Navigation-->
+    <string name="title_home">Главная</string>
+    <string name="title_account">Аккаунт</string>
+    <string name="title_favorites">Избранное</string>
+
+    <!--Favorites Screen-->
     <string name="favorites">Избранное</string>
 </resources>

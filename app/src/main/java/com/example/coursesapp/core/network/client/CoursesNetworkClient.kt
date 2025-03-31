@@ -1,6 +1,6 @@
 package com.example.coursesapp.core.network.client
 
-import com.example.coursesapp.core.dto.CoursesResponseDto
+import com.example.coursesapp.features.courses.data.dto.CoursesResponseDto
 import com.example.coursesapp.core.network.CoursesApiService
 import com.example.coursesapp.core.network.RetrofitNetworkClient
 

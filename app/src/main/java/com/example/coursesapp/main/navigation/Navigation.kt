@@ -16,25 +16,26 @@ import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.coursesapp.R
-import com.example.coursesapp.features.account.AccountScreen
-import com.example.coursesapp.features.account.navigation.ACCOUNT_ROUTE
-import com.example.coursesapp.features.authorization.navigation.AUTH_ROUTE
-import com.example.coursesapp.features.authorization.ui.AuthorizationScreen
-import com.example.coursesapp.features.favorites.FavoriteScreen
-import com.example.coursesapp.features.favorites.navigation.FAVORITES_ROUTE
-import com.example.coursesapp.features.home.navigation.HOME_ROUTE
-import com.example.coursesapp.features.home.navigation.navigateToHomeScreen
-import com.example.coursesapp.features.home.ui.HomeScreen
-import com.example.coursesapp.features.onboarding.OnboardingScreen
+import com.example.coursesapp.features.account.ui.navigation.ACCOUNT_ROUTE
+import com.example.coursesapp.features.account.ui.navigation.accountScreen
+import com.example.coursesapp.features.authorization.ui.navigation.AUTH_ROUTE
+import com.example.coursesapp.features.authorization.ui.navigation.authorizationScreen
+import com.example.coursesapp.features.authorization.ui.navigation.navigateToAuthorizationScreen
+import com.example.coursesapp.features.favorites.ui.navigation.FAVORITES_ROUTE
+import com.example.coursesapp.features.favorites.ui.navigation.favoritesScreen
+import com.example.coursesapp.features.home.ui.navigation.HOME_ROUTE
+import com.example.coursesapp.features.home.ui.navigation.homeScreen
+import com.example.coursesapp.features.home.ui.navigation.navigateToHomeScreen
 import com.example.coursesapp.features.onboarding.navigation.ONBOARD_ROUTE
+import com.example.coursesapp.features.onboarding.navigation.onboardingScreen
 import com.example.coursesapp.ui.theme.BasicGreen
 import com.example.coursesapp.ui.theme.BasicGrey
 import com.example.coursesapp.ui.theme.DarkGrey
@@ -71,18 +72,18 @@ fun Navigation(isAuthenticated: Boolean) {
                 ) {
                     val items = listOf(
                         BottomNavigationItem(
-                            title = "Главная",
+                            title = stringResource(R.string.title_home),
                             icon = ImageVector.vectorResource(R.drawable.ic_home),
                             route = HOME_ROUTE,
                             titleColor = BasicGreen
                         ),
                         BottomNavigationItem(
-                            title = "Избранное",
+                            title = stringResource(R.string.title_favorites),
                             icon = ImageVector.vectorResource(R.drawable.ic_bookmarkbig),
                             route = FAVORITES_ROUTE
                         ),
                         BottomNavigationItem(
-                            title = "Аккаунт",
+                            title = stringResource(R.string.title_account),
                             icon = ImageVector.vectorResource(R.drawable.ic_account),
                             route = ACCOUNT_ROUTE
                         )
@@ -133,11 +134,11 @@ fun Navigation(isAuthenticated: Boolean) {
             startDestination = if (isAuthenticated) AUTH_ROUTE else ONBOARD_ROUTE,
             modifier = Modifier
         ) {
-            composable(AUTH_ROUTE) { AuthorizationScreen(navigateToMainScreen = { navController.navigateToHomeScreen() }) }
-            composable(HOME_ROUTE) { HomeScreen() }
-            composable(ONBOARD_ROUTE) { OnboardingScreen(navigateToMainScreen = { navController.navigateToHomeScreen() }) }
-            composable(ACCOUNT_ROUTE) { AccountScreen() }
-            composable(FAVORITES_ROUTE) { FavoriteScreen() }
+            authorizationScreen(navigateToMainScreen = { navController.navigateToHomeScreen() })
+            homeScreen()
+            onboardingScreen(navigateToAuthorizationScreen = { navController.navigateToAuthorizationScreen() })
+            accountScreen()
+            favoritesScreen()
         }
     }
 

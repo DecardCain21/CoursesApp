@@ -18,6 +18,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -28,20 +29,28 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.coursesapp.R
-import com.example.coursesapp.core.composable.CourseGreenButton
-import com.example.coursesapp.core.composable.CourseTextField
+import com.example.coursesapp.core.ui.composable.CourseGreenButton
+import com.example.coursesapp.core.ui.composable.CourseTextField
+import com.example.coursesapp.core.ui.extantions.isCyrillic
+import com.example.coursesapp.core.ui.extantions.isValidEmail
+import com.example.coursesapp.features.authorization.ui.state.AuthorizationScreenState
+import com.example.coursesapp.features.authorization.ui.state.AuthorizationScreenUiEvent
 import com.example.coursesapp.ui.theme.BlueLight
 import com.example.coursesapp.ui.theme.CoursesAppTheme
 import com.example.coursesapp.ui.theme.DividerColor
 import com.example.coursesapp.ui.theme.OrangeEndColor
 import com.example.coursesapp.ui.theme.OrangeStartColor
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun AuthorizationScreen(
     modifier: Modifier = Modifier,
     navigateToMainScreen: () -> Unit = {},
+    viewModel: AuthorizationViewModel = koinViewModel()
 ) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -49,13 +58,30 @@ fun AuthorizationScreen(
     ) {
         Column {
             Header()
-            EmailTextInput()
-            PasswordTextInput()
+            EmailTextInput(
+                state = uiState,
+                onValueChange = { newValue ->
+                    viewModel.handleEvent(AuthorizationScreenUiEvent.InputLogin(newValue))
+                },
+                isEmailAttempt = { newValue ->
+                    viewModel.handleEvent(
+                        AuthorizationScreenUiEvent.EnterEnabled(
+                            newValue
+                        )
+                    )
+                }
+            )
+            PasswordTextInput(
+                state = uiState,
+                onValueChange = { newValue ->
+                    viewModel.handleEvent(AuthorizationScreenUiEvent.InputPassword(newValue))
+                })
             CourseGreenButton(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 24.dp),
                 text = stringResource(R.string.enter),
+                isEnabled = uiState.enterEnabled,
                 onClick = { navigateToMainScreen() }
             )
             OptionsView()
@@ -80,7 +106,12 @@ private fun Header() {
 }
 
 @Composable
-private fun EmailTextInput() {
+private fun EmailTextInput(
+    state: AuthorizationScreenState,
+    onValueChange: (String) -> Unit,
+    isEmailAttempt: (Boolean) -> Unit
+) {
+
     Text(
         modifier = Modifier.padding(top = 28.dp),
         text = stringResource(R.string.email),
@@ -91,14 +122,23 @@ private fun EmailTextInput() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 8.dp),
-        value = "",
+        value = state.inputValueLogin,
         placeholder = stringResource(R.string.placeholder_text_email),
-        onValueChange = {},
+        onValueChange = { newValue ->
+            val filteredValue = newValue.filter {
+                it.isLetter() && !it.isCyrillic() || it.isDigit() || "@._-".contains(it)
+            }
+            onValueChange(filteredValue)
+            if (newValue.isValidEmail()) {
+                isEmailAttempt(newValue.isValidEmail())
+            }
+        },
     )
+
 }
 
 @Composable
-private fun PasswordTextInput() {
+private fun PasswordTextInput(state: AuthorizationScreenState, onValueChange: (String) -> Unit) {
     Text(
         modifier = Modifier.padding(top = 16.dp),
         text = stringResource(R.string.password),
@@ -109,9 +149,9 @@ private fun PasswordTextInput() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 8.dp, bottom = 16.dp),
-        value = "",
-        placeholder = stringResource(R.string.enter_password),
-        onValueChange = {},
+        value = state.inputValuePassword,
+        placeholder = stringResource(R.string.placeholder_text_password),
+        onValueChange = { newValue -> onValueChange(newValue) },
     )
 }
 
@@ -190,7 +230,6 @@ private fun Body() {
             .fillMaxWidth()
     ) {
         Spacer(modifier = Modifier.width(16.dp))
-        //ButtonLinkV()
         SocialAuthButton(
             modifier = Modifier,
             backgroundColor = BlueLight,
@@ -200,7 +239,6 @@ private fun Body() {
             onClick = {}
         )
         Spacer(modifier = Modifier.width(16.dp))
-        //ButtonLinkO()
         SocialAuthButton(
             modifier = Modifier,
             gradientColors = listOf(OrangeEndColor, OrangeStartColor),
