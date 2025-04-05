@@ -1,0 +1,7 @@
+<resources>
+    <!--<string name="app_name">CoursesApp</string>-->
+
+    <!-- Onboarding Screen-->
+    <string name="onboarding_continue_word">Продолжить</string>
+    <string name="onboarding_header_onboarding">Тысячи курсов \nв одном месте</string>
+</resources>

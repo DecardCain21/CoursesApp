@@ -5,15 +5,15 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.example.coursesapp.features.authorization.ui.AuthorizationScreen
 
-const val AUTH_ROUTE = "authorization"
+public const val AUTH_ROUTE: String = "authorization"
 
-fun NavController.navigateToAuthorizationScreen() = navigate(AUTH_ROUTE) {
+public fun NavController.navigateToAuthorizationScreen(): Unit = navigate(AUTH_ROUTE) {
     popUpTo(AUTH_ROUTE) {
         inclusive = true
     }
 }
 
-fun NavGraphBuilder.authorizationScreen(
+public fun NavGraphBuilder.authorizationScreen(
     navigateToMainScreen: () -> Unit
 ) {
     composable(route = AUTH_ROUTE) {

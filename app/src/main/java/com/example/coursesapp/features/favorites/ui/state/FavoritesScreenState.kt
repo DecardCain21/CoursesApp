@@ -1,6 +1,6 @@
 package com.example.coursesapp.features.favorites.ui.state
 
-import com.example.coursesapp.features.courses.domain.models.Course
+import com.example.features.courses.models.Course
 
 interface FavoritesScreenState {
     data object Loading : FavoritesScreenState

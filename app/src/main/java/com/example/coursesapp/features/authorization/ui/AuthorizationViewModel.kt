@@ -6,7 +6,7 @@ import com.example.coursesapp.features.authorization.ui.state.AuthorizationScree
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-class AuthorizationViewModel : ViewModel() {
+public class AuthorizationViewModel : ViewModel() {
 
     private val _uiState =
         MutableStateFlow(
@@ -16,9 +16,9 @@ class AuthorizationViewModel : ViewModel() {
                 enterEnabled = false
             )
         )
-    val uiState: StateFlow<AuthorizationScreenState> = _uiState
+    public val uiState: StateFlow<AuthorizationScreenState> = _uiState
 
-    fun handleEvent(event: AuthorizationScreenUiEvent) {
+    public fun handleEvent(event: AuthorizationScreenUiEvent) {
         when (event) {
             is AuthorizationScreenUiEvent.InputLogin -> inputLoginManagement(event.text)
             is AuthorizationScreenUiEvent.InputPassword -> inputPasswordPassword(event.text)

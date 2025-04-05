@@ -1,6 +1,6 @@
 package com.example.coursesapp.features.home.ui.di
 
-import com.example.coursesapp.features.home.ui.HomeScreenViewModel
+import com.example.coursesapp.features.home.ui.presentation.HomeScreenViewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.dsl.module
 

@@ -19,9 +19,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.coursesapp.R
-import com.example.coursesapp.core.ui.composable.CourseItem
+import com.example.core.ui.composable.CourseItem
 import com.example.coursesapp.features.favorites.ui.state.FavoritesScreenState
-import com.example.coursesapp.ui.theme.CoursesAppTheme
+import com.example.core.ui.theme.CoursesAppTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable

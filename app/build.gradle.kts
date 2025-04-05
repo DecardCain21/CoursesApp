@@ -54,11 +54,18 @@ android {
 }
 
 dependencies {
+    implementation(project(":core"))
+    implementation(project(":features:courses:domain"))
+    implementation(project(":features:onboarding:domain"))
+    implementation(project(":features:onboarding:ui"))
+
     // Core AndroidX
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
+
+    // Ui
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
@@ -73,12 +80,6 @@ dependencies {
     implementation(libs.koin.core)
     implementation("io.insert-koin:koin-androidx-compose:3.5.0")
     implementation("io.insert-koin:koin-android:3.5.0")
-
-    // Network (Retrofit, Gson)
-    implementation(libs.retrofit)
-    implementation(libs.logging.interceptor)
-    implementation(libs.converter.gson)
-    implementation (libs.okhttp)
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.android)

@@ -4,9 +4,9 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.example.coursesapp.features.account.ui.AccountScreen
 
-const val ACCOUNT_ROUTE = "account"
+public const val ACCOUNT_ROUTE: String = "account"
 
-fun NavGraphBuilder.accountScreen() {
+public fun NavGraphBuilder.accountScreen() {
     composable(route = ACCOUNT_ROUTE) {
         AccountScreen()
     }

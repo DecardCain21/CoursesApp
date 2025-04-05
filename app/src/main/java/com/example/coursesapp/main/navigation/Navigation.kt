@@ -34,16 +34,16 @@ import com.example.coursesapp.features.favorites.ui.navigation.favoritesScreen
 import com.example.coursesapp.features.home.ui.navigation.HOME_ROUTE
 import com.example.coursesapp.features.home.ui.navigation.homeScreen
 import com.example.coursesapp.features.home.ui.navigation.navigateToHomeScreen
-import com.example.coursesapp.features.onboarding.navigation.ONBOARD_ROUTE
-import com.example.coursesapp.features.onboarding.navigation.onboardingScreen
-import com.example.coursesapp.ui.theme.BasicGreen
-import com.example.coursesapp.ui.theme.BasicGrey
-import com.example.coursesapp.ui.theme.DarkGrey
-import com.example.coursesapp.ui.theme.StrokeColor
+import com.example.core.ui.theme.BasicGreen
+import com.example.core.ui.theme.BasicGrey
+import com.example.core.ui.theme.DarkGrey
+import com.example.core.ui.theme.StrokeColor
+import com.example.ui.navigation.ONBOARD_ROUTE
+import com.example.ui.navigation.onboardingScreen
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun Navigation(isAuthenticated: Boolean) {
+public fun Navigation(isAuthenticated: Boolean) {
     val navController: NavHostController = rememberNavController()
     val noBottomBarScreens = listOf(ONBOARD_ROUTE, AUTH_ROUTE)
 
@@ -131,7 +131,7 @@ fun Navigation(isAuthenticated: Boolean) {
     ) {
         NavHost(
             navController = navController,
-            startDestination = if (isAuthenticated) AUTH_ROUTE else ONBOARD_ROUTE,
+            startDestination = if (isAuthenticated) AUTH_ROUTE else com.example.ui.navigation.ONBOARD_ROUTE,
             modifier = Modifier
         ) {
             authorizationScreen(navigateToMainScreen = { navController.navigateToHomeScreen() })
@@ -144,7 +144,7 @@ fun Navigation(isAuthenticated: Boolean) {
 
 }
 
-data class BottomNavigationItem(
+public data class BottomNavigationItem(
     val title: String,
     val icon: ImageVector,
     val route: String,

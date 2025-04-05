@@ -12,10 +12,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import com.example.coursesapp.main.navigation.Navigation
-import com.example.coursesapp.ui.theme.CoursesAppTheme
+import com.example.core.ui.theme.CoursesAppTheme
 import org.koin.androidx.compose.koinViewModel
 
-class MainActivity : ComponentActivity() {
+public class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

@@ -2,17 +2,20 @@ package com.example.coursesapp.app
 
 import android.app.Application
 import android.content.Context
-import com.example.coursesapp.core.network.di.networkModule
+import com.example.core.api.AppContext
+import com.example.core.network.di.appModule
+import com.example.core.network.di.networkModule
 import com.example.coursesapp.features.authorization.ui.di.authUiModule
-import com.example.coursesapp.features.courses.data.di.coursesDataModule
 import com.example.coursesapp.features.favorites.di.favoritesUiModule
 import com.example.coursesapp.features.home.ui.di.homeUiModule
-import com.example.coursesapp.features.onboarding.di.onBoardingModule
 import com.example.coursesapp.main.di.mainModule
+import com.example.domain.di.onBoardingDomainModule
+import com.example.features.courses.data.di.coursesDataModule
+import com.example.features.courses.di.courseModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
-class CoursesApp : Application() {
+public class CoursesApp : Application(), AppContext {
     init {
         instance = this
     }
@@ -22,17 +25,26 @@ class CoursesApp : Application() {
         startKoin {
             androidContext(this@CoursesApp)
             modules(
-                onBoardingModule, mainModule, coursesDataModule, networkModule, homeUiModule,
-                authUiModule, favoritesUiModule
+                appModule(this@CoursesApp),
+                onBoardingDomainModule,
+                mainModule,
+                coursesDataModule,
+                networkModule,
+                homeUiModule,
+                authUiModule,
+                favoritesUiModule,
+                courseModule,
             )
         }
     }
 
-    companion object {
+    public companion object {
         private var instance: CoursesApp? = null
 
-        fun applicationContext(): Context {
+        public fun applicationContext(): Context {
             return instance!!.applicationContext
         }
     }
+
+    override fun getAppContext(): Context = this
 }

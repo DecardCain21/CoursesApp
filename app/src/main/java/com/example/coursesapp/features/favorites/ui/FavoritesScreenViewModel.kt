@@ -3,7 +3,7 @@ package com.example.coursesapp.features.favorites.ui
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.coursesapp.features.courses.domain.usecase.GetFavoriteCoursesUseCase
+import com.example.features.courses.usecase.GetFavoriteCoursesUseCase
 import com.example.coursesapp.features.favorites.ui.state.FavoritesScreenState
 import com.example.coursesapp.features.favorites.ui.state.FavoritesScreenUiEvent
 import kotlinx.coroutines.flow.MutableStateFlow

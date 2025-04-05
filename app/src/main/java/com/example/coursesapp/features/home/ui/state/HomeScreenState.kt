@@ -1,6 +1,6 @@
 package com.example.coursesapp.features.home.ui.state
 
-import com.example.coursesapp.features.courses.domain.models.Course
+import com.example.features.courses.models.Course
 
 sealed interface HomeScreenState {
 

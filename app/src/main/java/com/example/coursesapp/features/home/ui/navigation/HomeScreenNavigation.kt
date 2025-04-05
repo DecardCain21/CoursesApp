@@ -3,7 +3,7 @@ package com.example.coursesapp.features.home.ui.navigation
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.example.coursesapp.features.home.ui.HomeScreen
+import com.example.coursesapp.features.home.ui.presentation.HomeScreen
 
 const val HOME_ROUTE = "home"
 

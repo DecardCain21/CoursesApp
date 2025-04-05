@@ -31,21 +31,21 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.coursesapp.R
-import com.example.coursesapp.core.ui.composable.CourseGreenButton
-import com.example.coursesapp.core.ui.composable.CourseTextField
-import com.example.coursesapp.core.ui.extantions.isCyrillic
-import com.example.coursesapp.core.ui.extantions.isValidEmail
+import com.example.core.ui.composable.CourseGreenButton
+import com.example.core.ui.composable.CourseTextField
+import com.example.core.ui.extantions.isCyrillic
+import com.example.core.ui.extantions.isValidEmail
 import com.example.coursesapp.features.authorization.ui.state.AuthorizationScreenState
 import com.example.coursesapp.features.authorization.ui.state.AuthorizationScreenUiEvent
-import com.example.coursesapp.ui.theme.BlueLight
-import com.example.coursesapp.ui.theme.CoursesAppTheme
-import com.example.coursesapp.ui.theme.DividerColor
-import com.example.coursesapp.ui.theme.OrangeEndColor
-import com.example.coursesapp.ui.theme.OrangeStartColor
+import com.example.core.ui.theme.BlueLight
+import com.example.core.ui.theme.CoursesAppTheme
+import com.example.core.ui.theme.DividerColor
+import com.example.core.ui.theme.OrangeEndColor
+import com.example.core.ui.theme.OrangeStartColor
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun AuthorizationScreen(
+public fun AuthorizationScreen(
     modifier: Modifier = Modifier,
     navigateToMainScreen: () -> Unit = {},
     viewModel: AuthorizationViewModel = koinViewModel()
@@ -215,7 +215,7 @@ private fun SocialAuthButton(
     }
 }
 
-fun Color.toBrush(): Brush {
+public fun Color.toBrush(): Brush {
     return Brush.verticalGradient(
         colors = listOf(this, this),
         startY = 0f,
