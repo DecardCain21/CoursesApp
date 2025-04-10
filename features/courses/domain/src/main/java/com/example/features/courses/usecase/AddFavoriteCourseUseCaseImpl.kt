@@ -1,13 +1,13 @@
 package com.example.features.courses.usecase
 
-import com.example.coursesapp.features.courses.domain.api.CoursesFavoriteRepository
+import com.example.features.courses.api.CoursesFavoriteRepository
 import com.example.features.courses.models.Course
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class AddFavoriteCourseUseCaseImpl(private val favoriteRepository: CoursesFavoriteRepository) :
+public class AddFavoriteCourseUseCaseImpl(private val favoriteRepository: CoursesFavoriteRepository) :
     AddFavoriteCourseUseCase {
-    override suspend fun invoke(course: Course) = withContext(Dispatchers.IO) {
+    override suspend fun invoke(course: Course): Unit = withContext(Dispatchers.IO) {
         favoriteRepository.saveCourseInDb(course)
     }
 }

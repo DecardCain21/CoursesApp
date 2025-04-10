@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.domain"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 26
@@ -35,6 +35,7 @@ android {
 
 dependencies {
     implementation(project(":core"))
+    implementation(project(":features:courses:domain"))
 
     // Core AndroidX
     implementation(libs.androidx.core.ktx)

@@ -1,12 +1,14 @@
 package com.example.features.courses.usecase
 
-import com.example.coursesapp.features.courses.domain.api.CoursesRepository
+import com.example.features.courses.api.CoursesRepository
+import com.example.features.courses.models.Course
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class GetCoursesUseCaseImpl(private val coursesRepository: CoursesRepository) : GetCoursesUseCase {
+public class GetCoursesUseCaseImpl(private val coursesRepository: CoursesRepository) :
+    GetCoursesUseCase {
 
-    override suspend fun invoke() = withContext(Dispatchers.IO) {
+    override suspend fun invoke(): Result<List<Course>> = withContext(Dispatchers.IO) {
         coursesRepository.getCourses()
     }
 }

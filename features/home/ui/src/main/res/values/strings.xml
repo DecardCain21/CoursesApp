@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Home Screen-->
+    <string name="by_date_added">По дате добавления</string>
+    <string name="home_placeholder_text_email">example@gmail.com</string>
+</resources>

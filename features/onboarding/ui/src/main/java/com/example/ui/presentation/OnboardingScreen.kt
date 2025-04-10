@@ -10,16 +10,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.core.ui.composable.CourseGreenButton
 import com.example.core.ui.theme.CoursesAppTheme
 import com.example.ui.R
-
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -28,6 +28,7 @@ public fun OnboardingScreen(
     navigateToAuthorizationScreen: () -> Unit,
     viewModel: OnBoardingScreenViewModel = koinViewModel()
 ) {
+    val state by viewModel.uiState.collectAsStateWithLifecycle()
 
     Column(
         modifier = modifier
@@ -67,14 +68,14 @@ private fun Header() {
 
 @Composable
 private fun ColumnScope.Logo() {
-    /*Image(
+    Image(
         modifier = Modifier
             .fillMaxWidth()
             .align(Alignment.CenterHorizontally)
             .padding(top = 32.dp),
         painter = painterResource(id = R.drawable.onboarding_courses),
         contentDescription = "",
-    )*/
+    )
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF141218)

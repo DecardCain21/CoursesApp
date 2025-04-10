@@ -12,8 +12,11 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/account2" />
+            <option value="$PROJECT_DIR$/features/authorization" />
             <option value="$PROJECT_DIR$/features/courses" />
             <option value="$PROJECT_DIR$/features/courses/domain" />
+            <option value="$PROJECT_DIR$/features/favorites" />
             <option value="$PROJECT_DIR$/features/home" />
             <option value="$PROJECT_DIR$/features/home/ui" />
             <option value="$PROJECT_DIR$/features/onboarding" />

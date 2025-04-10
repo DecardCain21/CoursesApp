@@ -3,7 +3,9 @@ package com.example.domain.di
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.domain.data.PreferencesStorage
+import com.example.domain.usecases.IsAuthUseCase
 import com.example.domain.usecases.IsAuthUseCaseImpl
+import com.example.domain.usecases.SetAuthUseCase
 import com.example.domain.usecases.SetAuthUseCaseImpl
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.singleOf
@@ -20,8 +22,8 @@ public val onBoardingDomainModule: Module = module {
 
     singleOf(::PreferencesStorage)
 
-    singleOf(::IsAuthUseCaseImpl) bind com.example.domain.usecases.IsAuthUseCase::class
+    singleOf(::IsAuthUseCaseImpl) bind IsAuthUseCase::class
 
-    singleOf(::SetAuthUseCaseImpl) bind com.example.domain.usecases.SetAuthUseCase::class
+    singleOf(::SetAuthUseCaseImpl) bind SetAuthUseCase::class
 
 }

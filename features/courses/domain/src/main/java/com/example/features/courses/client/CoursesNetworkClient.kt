@@ -5,14 +5,17 @@ import com.example.features.courses.CoursesApiService
 import com.example.features.courses.dto.CourseDto
 import com.example.features.courses.dto.CoursesResponseDto
 import com.example.features.courses.models.Course
+import org.koin.java.KoinJavaComponent.inject
+
 
 public interface CoursesNetworkClient {
     public suspend fun getCourses(): Result<List<Course>>
 }
 
 internal class CoursesNetworkClientImpl(
-    private val apiService: CoursesApiService
+    private val apiService: CoursesApiService,
 ) : RetrofitNetworkClient(), CoursesNetworkClient {
+    //private val apiService: CoursesApiService by inject()
 
     override suspend fun getCourses(): Result<List<Course>> {
         return super.doRequest {

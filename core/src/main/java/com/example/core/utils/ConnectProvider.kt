@@ -3,12 +3,12 @@ package com.example.core.utils
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import com.example.core.api.AppContext
+import org.koin.java.KoinJavaComponent.getKoin
 
 
-public fun getConnected(appContext: AppContext): Boolean {
-    val connectivityManager = appContext
-        .getAppContext()
+public fun getConnected(): Boolean {
+    val context: Context = getKoin().get() // TODO
+    val connectivityManager = context
         .getSystemService(
             Context.CONNECTIVITY_SERVICE
         ) as ConnectivityManager

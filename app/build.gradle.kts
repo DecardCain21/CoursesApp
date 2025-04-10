@@ -58,6 +58,10 @@ dependencies {
     implementation(project(":features:courses:domain"))
     implementation(project(":features:onboarding:domain"))
     implementation(project(":features:onboarding:ui"))
+    implementation(project(":features:home:ui"))
+    implementation(project(":features:authorization"))
+    implementation(project(":features:account2"))
+    implementation(project(":features:favorites"))
 
     // Core AndroidX
     implementation(libs.androidx.core.ktx)
@@ -78,8 +82,9 @@ dependencies {
     // Dependency Injection (Koin)
     implementation(project.dependencies.platform(libs.koin.bom))
     implementation(libs.koin.core)
-    implementation("io.insert-koin:koin-androidx-compose:3.5.0")
-    implementation("io.insert-koin:koin-android:3.5.0")
+    implementation(libs.koin.androidx.compose)
+    implementation(libs.koin.android)
+    implementation(libs.androidx.foundation.android)
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.android)

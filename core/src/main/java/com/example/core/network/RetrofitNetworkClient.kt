@@ -1,14 +1,14 @@
 package com.example.core.network
 
-import com.example.core.api.AppContext
+import android.content.Context
 import com.example.core.utils.getConnected
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 
-public abstract class RetrofitNetworkClient(private val appContext: AppContext) : NetworkClient {
+public abstract class RetrofitNetworkClient() : NetworkClient {
     override suspend fun <T> doRequest(request: suspend () -> T): Result<T> {
-        if (!getConnected(appContext)) {
+        if (!getConnected()) {
             return Result.failure(NetworkError.NoInternet())
         }
         return withContext(Dispatchers.IO) {
